@@ -7,7 +7,8 @@ This script allows you to download YouTube audio and automatically convert it in
 1. Clone this repository
 2. Run `npm install` to install dependencies
 3. Add YouTube video IDs to `links.txt`
-4. Run the script with `node main.js`
+4. Create a folder called 'music'
+5. Run the script with `node main.js`
 
 ## 📋 Prerequisites
 
