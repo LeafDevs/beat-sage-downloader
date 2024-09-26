@@ -1,0 +1,14 @@
+node_modules/
+
+package-lock.json
+test.js
+
+*.mp4
+*.zip
+*.wav
+*.mp3
+*.ogg
+*.flac
+*.m4a
+*.aac
+*.wma

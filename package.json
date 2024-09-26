@@ -1,0 +1,24 @@
+{
+  "name": "beat-sage-downloader",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "adm-zip": "^0.5.16",
+    "axios": "^1.7.7",
+    "cli-progress": "^3.12.0",
+    "fluent-ffmpeg": "^2.1.3",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "readline": "^1.3.0",
+    "stream": "^0.0.3",
+    "ytdl-core": "^4.11.5"
+  }
+}
