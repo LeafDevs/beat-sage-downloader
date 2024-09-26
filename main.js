@@ -71,9 +71,8 @@ async function downloadChunk(url, start, end) {
     const audioFormat = formats.find(format => format.mimeType.startsWith('audio/'));
     if (!audioFormat) throw new Error('No audio format found');
   
-    const ext = audioFormat.mimeType.split('/')[1].split(';')[0];
-    const safeTitle = info.videoDetails.title.replace(/\//g, '-');
-    const filename = `${safeTitle}-${info.videoDetails.videoId}.${ext}`;
+    const safeTitle = info.videoDetails.title.replace(/\//g, '-').replace(/ /g, '-');
+    const filename = `${safeTitle}-${info.videoDetails.videoId}.mp3`;
   
     console.log(`Downloading ${filename}`);
   
@@ -137,7 +136,7 @@ async function uploadToBeatsage(audioPath, title, artist) {
   content.append('audio_metadata_title', title);
   content.append('audio_metadata_artist', artist);
   content.append('difficulties', 'ExpertPlus');
-  content.append('modes', 'Standard,90Degree');
+  content.append('modes', 'Standard');
   content.append('events', 'DotBlocks');
   content.append('environment', 'DefaultEnvironment');
   content.append('system_tag', 'v2');
@@ -190,17 +189,17 @@ async function createBeatSageLevel(videoId) {
 
       const response = await fetch(downloadUrl);
       const buffer = await response.arrayBuffer();
-      const outputPath = path.join(process.cwd(), `[BSD] ${title} - ${artist}.zip`);
-      const zipOutputPath = path.join(oDir, `[BSD] ${title} - ${artist}.zip`);
+      const outputPath = path.join(process.cwd(), `[BSD]-${title}-${artist}.zip`);
+      const zipOutputPath = path.join(oDir, `[BSD]-${title}-${artist}.zip`);
       await fs.promises.writeFile(zipOutputPath, Buffer.from(buffer));
     
       const AdmZip = require('adm-zip');
       const zip = new AdmZip(zipOutputPath);
-      const extractPath = path.join(oDir, `[BSD] ${title} - ${artist}`);
+      const extractPath = path.join(oDir, `[BSD]-${title}-${artist}`);
       zip.extractAllTo(extractPath, true);
       
       const musicFolderPath = path.join(process.cwd(), 'music');
-      const destinationPath = path.join(musicFolderPath, `[BSD] ${title} - ${artist}.zip`);
+      const destinationPath = path.join(musicFolderPath, `[BSD]-${title}-${artist}.zip`);
       await fs.promises.rename(zipOutputPath, destinationPath);
 
       console.log(`File moved to: ${destinationPath}`);
